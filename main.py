@@ -169,9 +169,9 @@ def refresh(app):
 
 
 def main():
-    # run ls /dev/cu.* on unix to find port. On windows use...?
+    # run ls /dev/cu.* on unix to find port. On windows use (I think: run  netstat -np tcp )?
 
-    app = PhysioGo("EMG_Test", '/dev/cu.usbmodem1', "ganglion")  # create app
+    app = PhysioGo("EMG_Test", 'add port', "ganglion")  # create app
     app.addBasicText()
     plots = app.addLinePlot("line_series1", yMin=-app.yRange, yMax=app.yRange)
     app.start()
