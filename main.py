@@ -45,7 +45,7 @@ class PhysioGo:
         self.refresh = None
         self.myText = None
         self.recoredData = []
-        self.date = datetime.now().strftime("%H:%M:%S")
+        self.date = datetime.now().strftime("%H_%M_%S")
         self.channelStreams = [collections.deque(
             maxlen=self.data_size) for channel in self.channels]  # set up channel data streams
         print(self.channelStreams)
@@ -139,7 +139,7 @@ class PhysioGo:
 
     def update(self):
         channels = self.sensor.getChannels()
-        t = datetime.now().strftime("%H:%M:%S")
+        t = datetime.now().strftime("%H_%M_%S")
 
         # data = self.sensor.getRecentData(self.data_size)  # config
         # self.board.insert_marker(1)
@@ -169,9 +169,9 @@ def refresh(app):
 
 
 def main():
-    # run ls /dev/cu.* on unix to find port. On windows use (I think: run  netstat -np tcp )?
+    # run ls /dev/cu.* on unix to find port. On windows pull up device manager and find port name
 
-    app = PhysioGo("EMG_Test", 'add port', "ganglion")  # create app
+    app = PhysioGo("EMG_Test", 'COM3', "ganglion")  # create app
     app.addBasicText()
     plots = app.addLinePlot("line_series1", yMin=-app.yRange, yMax=app.yRange)
     app.start()
